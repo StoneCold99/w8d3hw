@@ -61,6 +61,34 @@ class Archer extends RPGCharacter {
         console.log(`${this.name} defends with a tunic!`);
     }
 }
+// Create a User
+class User {
+    constructor(name) {
+        this.name = name;
+        this.cart = new ShoppingCart();
+    }
+    addToCart(item) {
+        if (shop.getAvailableItems().includes(item)) {
+            this.cart.addItem(item);
+        }
+        else {
+            console.log(`${item} is not available in the shop.`);
+        }
+    }
+    viewCart() {
+        console.log(`${this.name}'s Cart:`);
+        this.cart.viewCart();
+    }
+    removeFromCart(item) {
+        this.cart.deleteItem(item);
+    }
+    removeQuantityFromCart(item, quantity) {
+        for (let i = 0; i < quantity; i++) {
+            this.removeFromCart(item);
+        }
+    }
+}
+const user = new User("John");
 // ShoppingCart
 class ShoppingCart {
     constructor() {
@@ -89,6 +117,15 @@ class ShoppingCart {
         }
     }
 }
+class Shop {
+    constructor() {
+        this.items = ["Sword", "Bow and Arrow", "Club", "Shield", "Armor", "Tunic"];
+    }
+    getAvailableItems() {
+        return this.items;
+    }
+}
+const shop = new Shop();
 const shoppingCart = new ShoppingCart();
 // Adding items to the cart
 shoppingCart.addItem("Sword");
@@ -109,7 +146,7 @@ const peonCart = new ShoppingCart();
 const knightCart = new ShoppingCart();
 const archerCart = new ShoppingCart();
 // Adding and deleting items from the carts
-ogreCart.addItem("Club","Sword");
+ogreCart.addItem("Club");
 ogreCart.viewCart();
 ogreCart.deleteItem("Club");
 ogreCart.viewCart();
@@ -131,3 +168,12 @@ archerCart.addItem("Tunic");
 archerCart.viewCart();
 archerCart.deleteItem("Tunic");
 archerCart.viewCart();
+// for user 
+user.addToCart("Sword");
+user.addToCart("Bow and Arrow");
+user.addToCart("Shield"); // This item is not available in the shop
+user.viewCart();
+user.removeFromCart("Bow and Arrow");
+user.viewCart();
+user.removeQuantityFromCart("Sword", 2);
+user.viewCart();

@@ -68,6 +68,41 @@ class Archer extends RPGCharacter {
         console.log(`${this.name} defends with a tunic!`)
     }
 }
+// Create a User
+class User {
+    private name: string;
+    private cart: ShoppingCart;
+
+    constructor(name: string) {
+        this.name = name;
+        this.cart = new ShoppingCart();
+    }
+
+    addToCart(item: string): void {
+        if (shop.getAvailableItems().includes(item)) {
+            this.cart.addItem(item);
+        } else {
+            console.log(`${item} is not available in the shop.`);
+        }
+    }
+
+    viewCart(): void {
+        console.log(`${this.name}'s Cart:`);
+        this.cart.viewCart();
+    }
+
+    removeFromCart(item: string): void {
+        this.cart.deleteItem(item);
+    }
+
+    removeQuantityFromCart(item: string, quantity: number): void {
+        for (let i = 0; i < quantity; i++) {
+            this.removeFromCart(item);
+        }
+    }
+}
+
+const user = new User("John");
 
 
 // ShoppingCart
@@ -97,6 +132,16 @@ class ShoppingCart {
         }
     }
 }
+class Shop {
+    private items: string[] = ["Sword", "Bow and Arrow", "Club", "Shield", "Armor", "Tunic"];
+
+    getAvailableItems(): string[] {
+        return this.items;
+    }
+}
+
+const shop = new Shop();
+
 
 const shoppingCart = new ShoppingCart();
 
@@ -150,3 +195,16 @@ archerCart.addItem("Tunic");
 archerCart.viewCart();
 archerCart.deleteItem("Tunic");
 archerCart.viewCart();
+
+// for user 
+user.addToCart("Sword");
+user.addToCart("Bow and Arrow");
+user.addToCart("Shield"); // This item is not available in the shop
+
+user.viewCart();
+
+user.removeFromCart("Bow and Arrow");
+user.viewCart();
+
+user.removeQuantityFromCart("Sword", 2);
+user.viewCart();
