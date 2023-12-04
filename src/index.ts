@@ -208,3 +208,64 @@ user.viewCart();
 
 user.removeQuantityFromCart("Sword", 2);
 user.viewCart();
+
+
+// Display initial information about characters
+console.log("Initial Information about RPG Characters:");
+ogre.attack();
+ogre.defend();
+peon.attack();
+peon.defend();
+knight.attack();
+knight.defend();
+archer.attack();
+archer.defend();
+
+// RPG characters go shopping
+console.log("\nRPG Characters Go Shopping:");
+
+const ogreCart = new ShoppingCart();
+ogreCart.addItem("Club");
+ogreCart.viewCart();
+ogreCart.addItem("Shield");
+ogreCart.viewCart();
+ogreCart.deleteItem("Club");
+ogreCart.viewCart();
+
+const peonCart = new ShoppingCart();
+peonCart.addItem("Bow and Arrow");
+peonCart.viewCart();
+peonCart.deleteItem("Sword");
+peonCart.viewCart();
+
+const knightCart = new ShoppingCart();
+knightCart.addItem("Sword");
+knightCart.viewCart();
+knightCart.addItem("Armor");
+knightCart.viewCart();
+knightCart.deleteItem("Bow and Arrow");
+knightCart.viewCart();
+
+const archerCart = new ShoppingCart();
+archerCart.addItem("Tunic");
+archerCart.viewCart();
+archerCart.deleteItem("Tunic");
+archerCart.viewCart();
+
+
+console.log("\nFinal Information about RPG Characters and their Shopping Carts:");
+ogre.attack();
+ogre.defend();
+ogreCart.viewCart();
+
+peon.attack();
+peon.defend();
+peonCart.viewCart();
+
+knight.attack();
+knight.defend();
+knightCart.viewCart();
+
+archer.attack();
+archer.defend();
+archerCart.viewCart();
